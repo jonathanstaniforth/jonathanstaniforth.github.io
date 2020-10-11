@@ -1,2 +1,0 @@
-I"¦<p>Only one container or service deployed using docker can use a port on the host machine at any given time, meaning, each container has to use a different port to be accessed. But, in certain situations, we may want several containers to use the same port, for example when using domain names to access containers. Additionally, this problem grows as the scale and complexity of docker services and swarms increases.</p>
-:ET

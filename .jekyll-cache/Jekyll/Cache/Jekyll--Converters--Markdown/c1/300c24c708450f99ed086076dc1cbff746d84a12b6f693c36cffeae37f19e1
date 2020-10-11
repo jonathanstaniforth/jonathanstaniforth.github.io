@@ -1,4 +1,0 @@
-I"’<p>When submitting requests to a server, you may want to know its progress, for example when uploading large files which can time.
-Several approaches can be taken for monitoring both the upload and download progress, with this post showing two different methods.
-Towards the end of the post, it will show how to use these different methods with jQuery, and discuss further steps that can be taken.</p>
-:ET

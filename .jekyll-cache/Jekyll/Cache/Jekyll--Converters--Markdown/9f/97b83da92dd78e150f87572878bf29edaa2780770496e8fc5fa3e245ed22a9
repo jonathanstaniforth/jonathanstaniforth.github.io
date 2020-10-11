@@ -1,9 +1,0 @@
-I"|<p>In a recent move of offices, we had to stop our GitLab docker container and
-decided to take the opportunity to improve the storage of our git repositories.
-Instead of storing our git repositories on a desktop computer that’s acting as a
-server, we wanted to move them to a Network Access Storage (NAS).
-This NAS is by <a href="https://www.synology.com/">Synology</a> and has been set up with RAID to automatically backup data stored on the device,
-providing us with better resilience against storage failure.
-Additionally, it provides some optimisations in data transfer and storage, which
-the standard desktop doesn’t have.</p>
-:ET

@@ -1,2 +1,0 @@
-I"<p>Recently, I have been using <a href="https://docs.docker.com/engine/swarm/">Docker</a> to deploy a set of web-based systems to a cluster of production servers. This is easy to do with <a href="https://docs.docker.com/engine/swarm/">swarm mode</a>, which allows a group of Docker Engines to be pulled together into a cluster, called a swarm. However, as I found out, swarm mode is not so great when faced with a firewall and communication between nodes can easily be blocked if the firewall is not configured correctly.</p>
-:ET
