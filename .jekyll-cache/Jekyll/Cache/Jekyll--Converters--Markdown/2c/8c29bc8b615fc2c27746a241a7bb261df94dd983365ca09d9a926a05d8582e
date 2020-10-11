@@ -1,0 +1,4 @@
+I"d<p>When testing, the behaviour of production code should be checked in all possible states.
+However, creating these states can be difficult and each state may require large scripts to establish the right environment.
+Therefore, a method of imitating the behaviour of production code, called <strong>mocking</strong>, is used to alleviate this problem.</p>
+:ET

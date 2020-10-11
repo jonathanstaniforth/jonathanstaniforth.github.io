@@ -1,0 +1,151 @@
+I"G!<p>An <strong>algorithm</strong> is a defined procedure to accomplish a specific task.
+It must accept input, also known as instances, and transform the input to achieve the desired output.
+The transformation applied by an algorithm is defined by a series of steps which it must follow.
+Often, algorithms are used to solve <strong>algorithmic problems</strong> which can be formally defined as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Problem: &lt;description of the problem&gt;
+Input: &lt;data provided to the algorithm&gt;
+Output: &lt;what the algorithm must produce&gt;
+</code></pre></div></div>
+
+<p>When creating an algorithm, several goals should be achieved:</p>
+<ul>
+  <li>correctness - always produces the correct output</li>
+  <li>efficiency - produces the output with the least amount of computation</li>
+  <li>ease - trivial to implement</li>
+</ul>
+
+<blockquote>
+  <p>It may not always be possible to achieve all these goals simulatenously and, therefore, a balance between them may be required.</p>
+</blockquote>
+
+<h2 id="heuristics">Heuristics</h2>
+<p><strong>Heuristics</strong> are used in place of algorithms when it is not possible to achieve the correct output as they can provide approximations.
+Different heuristics will provide output with varying degrees of <strong>correctness</strong> and, therefore, the heuristic used for a problem should be selected carefully so that it matches as closely as possible.</p>
+
+<h2 id="algorithm-correctness">Algorithm correctness</h2>
+<p>To establish the correctness of an algorithm, a goal discussed above, <strong>proof</strong> is required.
+To show proof, the following is required:</p>
+<ul>
+  <li>proof statement - statement on what is being proven</li>
+  <li>assumptions</li>
+  <li>chain of reasoning - the process from assumptions to the proof statement</li>
+  <li>QED - shows that the proof has finished, “thus it is demonstrated”</li>
+</ul>
+
+<p>The following sections will discuss how to achieve each of the parts shown above.</p>
+
+<h3 id="proof-statement">Proof statement</h3>
+<p>To define the proof statement, i.e. describe the problem, the following parts must be stated:</p>
+<ul>
+  <li>the set of allowed input</li>
+  <li>properties required from the ouput</li>
+</ul>
+
+<p>Two traps are often encountered when defining the proof statement:</p>
+<ul>
+  <li>ill-defined problems - ambiguous words are used in the statement</li>
+  <li>compound goals - multiple goals are selected</li>
+</ul>
+
+<blockquote>
+  <p>A technique to achieving a correct and efficient algorithm is to reduce the set of allowed input.</p>
+</blockquote>
+
+<h3 id="chain-of-reasoning">Chain of reasoning</h3>
+<p>Several notation methods can be used to show the sequence of steps taken by an algorithm, i.e. show the chain of reasoning.
+The different notation methods are the following:</p>
+<ul>
+  <li>English</li>
+  <li>pseudocode</li>
+  <li>programming language</li>
+</ul>
+
+<p>These methods describe an algorithm in different ways, i.e. different languages, and have varying degrees of accuracy and ease of understanding.
+While programming languages have the highest accuracy, they can be the most difficult to understand.
+On the other hand, English can be easily understood, but, the words used may introduce ambiguity and, therefore, reduce the accuracy of the description.
+When selecting a notation method, a decision between the level of accuracy and understanding needs to be made.</p>
+
+<h3 id="proof-of-incorrectness">Proof of incorrectness</h3>
+<p><strong>Counter-examples</strong> are inputs that result in an algorithm producing incorrect output and have the following properties:</p>
+<ul>
+  <li>verifiability
+    <ul>
+      <li>show the output produced by the algorithm</li>
+      <li>show the correct answer for the given input</li>
+    </ul>
+  </li>
+  <li>simplicity - remove all unnecessary details</li>
+</ul>
+
+<p>When searching for weaknesses in an algorithm, first look at the problem in detail and think about what issues/difficulties may occur when solving.
+Second, systematically cover all possible inputs, including small, extreme, and tie input.</p>
+
+<blockquote>
+  <p>If incorrectness is not found in an algorithm, proof of the correctness of the algorithm is still required.</p>
+</blockquote>
+
+<h3 id="proof-of-correctness">Proof of correctness</h3>
+<p><strong>Mathematical induction</strong> is a proof technique which can be used as proof of the correctness of an algorithm.
+It involves proving a base case and then assuming it is correct up to a value.
+Induction has the following steps:</p>
+<ul>
+  <li>proved a formula for a base case, such as 1</li>
+  <li>assume the formula is correct up to <code class="language-plaintext highlighter-rouge">n - 1</code></li>
+  <li>show the formula is correct for <code class="language-plaintext highlighter-rouge">n</code></li>
+</ul>
+
+<p><strong>Recursion</strong> is similar to mathematical induction and has the following steps:</p>
+<ul>
+  <li>the recursive case breaks the problem down into smaller sub-problems</li>
+  <li>the base case stops the recursion and returns a value</li>
+  <li>show that the algorithm is correct for the case <code class="language-plaintext highlighter-rouge">n</code></li>
+</ul>
+
+<h2 id="modeling-a-problem">Modeling a problem</h2>
+<p>Algorithms are designed to work on rigorously defined abstract data structures, discussed below.
+Therefore, when describing a problem, it must be done abstractly, such that it becomes a sequence of transformations on abstract data structures.
+The following sections discuss the different abstract data structures that are available.</p>
+
+<h4 id="combinatorial-objects">Combinatorial objects</h4>
+<p>The following are common data structures:</p>
+<ul>
+  <li>permutations - arrangements/orderings of items, e.g. {1, 3, 2, 4}</li>
+  <li>subsets - a selection of items from a set of items</li>
+  <li>trees - hierarchical relationships between items</li>
+  <li>graphs - relationships between arbitrary pairs of objects</li>
+  <li>points - locations in a geometric space</li>
+  <li>polygons - regions in a geometric space</li>
+  <li>string - sequences of characters/patterns</li>
+</ul>
+
+<h4 id="recursive-objects">Recursive objects</h4>
+<p>Recursion involves the combination of a set of smaller items, resulting in a larger item.
+The abstract data structures discussed above can be handled recursively, shown below:</p>
+<ul>
+  <li>permutations - removing an element results in a permutation with <code class="language-plaintext highlighter-rouge">n - 1</code> elements</li>
+  <li>subsets - removing an element in subset results in a subset of <code class="language-plaintext highlighter-rouge">n - 1</code> elements</li>
+  <li>trees - the combination of nodes, smaller items, results in a larger tree, larger item</li>
+  <li>graphs - the combination of nodes results in a larger graph</li>
+  <li>points - points can be combined into a larger set or broken down into smaller sets</li>
+  <li>polygons - similar to the points object</li>
+  <li>strings - the characters of a string can be combined to produce a larger string</li>
+</ul>
+
+<p>Recursive objects require the decomposition rules, and base cases.
+Decomposition rules describe how a recursive object may be broken down into a smaller object, and is known as the <a href="#Proof-of-correctness">recursive case</a>.
+Base cases define the smallest object that can be achieved from a recursive object, and results in the decomposition of the object terminating.</p>
+
+<blockquote>
+  <p>Further discussion about recursion can be found on my post <a href="/2020/05/07/notes-on-recursive-algorithms.html">Notes on Recursive Algorithms</a></p>
+</blockquote>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This post briefly looked at algorithms, firstly what they are and how they can be used to solve problems by transforming given input to a required output.
+Secondly, how to prove the correctness of an algorithm was discussed, including tools and techniques that can be used.
+Finally, the reasoning for modeling a problem abstractly so that an algorithm can perform transformations on abstract data structures was presented.</p>
+
+<p>These notes where prepared from the book “The Algorithm Design Manual” by Steven S. Skiena.
+This book provides an excellent starting point for understanding algorithms and how they work.
+You can find the book over at the <a href="https://www.springer.com/us/book/9781848000698">Springer website</a>.</p>
+:ET

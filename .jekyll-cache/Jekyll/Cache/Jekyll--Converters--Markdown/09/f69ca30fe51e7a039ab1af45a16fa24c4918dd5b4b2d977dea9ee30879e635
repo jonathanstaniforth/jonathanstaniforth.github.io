@@ -1,0 +1,8 @@
+I"<p><strong>Dotfiles</strong> are configuration files that hold the settings for applications, such
+as <a href="https://www.vim.org/">vim</a>, and are usually located in your $HOME directory.
+These files allow you to optimise your workflow by customising your development
+environment. However, as the number of dotfiles grows, keeping them in sync
+between the different machines that I use has become an increasing problem.
+Therefore, this article discusses my solution to keeping my dotfiles organised
+and syncronised between my machines.</p>
+:ET

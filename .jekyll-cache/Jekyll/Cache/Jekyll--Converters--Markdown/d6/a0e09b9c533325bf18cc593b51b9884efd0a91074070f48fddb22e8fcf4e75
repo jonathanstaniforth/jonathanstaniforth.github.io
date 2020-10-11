@@ -1,0 +1,4 @@
+I"¯<p>The enumerated data type (enum) provides a convenient way to constraint a column to a set of values.
+However, the implementation of enum in <a href="https://laravel.com">Laravel</a> is not as it seems, and changing the set of values can prove difficult later on.
+This post looks at how Laravel sets a column to enum in the database and provides details on how to change the available set of values using a migration script.</p>
+:ET

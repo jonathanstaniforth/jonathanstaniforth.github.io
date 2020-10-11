@@ -1,0 +1,59 @@
+I"*<p>This post provides a brief guide to transferring a PostgreSQL database from one Docker container to another, when they reside on different servers.</p>
+
+<h2 id="origin-server">Origin Server</h2>
+<p>Starting at the origin server, i.e. the server where the current PostgreSQL database is running, dump the database to an sql file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_dump <span class="nt">-U</span> &lt;database_username&gt; &lt;database_name&gt; <span class="o">&gt;</span> postgres_backup.sql
+</code></pre></div></div>
+
+<p>Once the backup has complete, transfer the sql file from the origin server to the destination server, i.e. the server where the new PostgreSQL database will run.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp <span class="nt">-i</span> &lt;location_of_private_ssh_key&gt; postgres_backup.sql &lt;username&gt;@&lt;destination_server_private_ip&gt;:~
+</code></pre></div></div>
+
+<blockquote>
+  <p>Make sure to have a private SSH key on the origin server and the matching public SSH key on the destination server.</p>
+</blockquote>
+
+<h2 id="destination-server">Destination Server</h2>
+
+<p>At the destination server, login and change the owner of the sql file to <strong>postgres</strong>. If necessary, move the sql file to the folder which will contain the database files.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chown </span>postgres:postgres &lt;sql_file_path&gt;
+</code></pre></div></div>
+
+<p>Now, pull the postgres Docker image:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull postgres:&lt;tag&gt;
+</code></pre></div></div>
+
+<p>Next, run the postgres image, mounting the folder which will contain the database files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-v</span> &lt;database_folder_path&gt;:/var/lib/postgresql/data postgres:&lt;tag&gt;
+</code></pre></div></div>
+
+<p>Find the running container, enter and navigate to the database folder:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get the container ID</span>
+docker container <span class="nb">ls
+
+</span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;container_id&gt; bash
+
+<span class="nb">cd</span> /var/lib/postgresql/data
+</code></pre></div></div>
+
+<p>Now, run the following commands as postgres commands:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="o">&lt;</span><span class="n">database_username</span><span class="o">&gt;</span> <span class="k">WITH</span> <span class="n">PASSWORD</span> <span class="s1">'&lt;password&gt;'</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span> <span class="k">TO</span> <span class="o">&lt;</span><span class="n">database_username</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Finally, import the sql file into the new database:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="nt">-U</span> &lt;database_username&gt; &lt;database_name&gt; &lt; postgres_backup.sql
+</code></pre></div></div>
+
+<blockquote>
+  <p>Make sure no errors appear in the output while importing the data into the database.</p>
+</blockquote>
+:ET

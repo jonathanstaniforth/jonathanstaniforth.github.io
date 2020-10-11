@@ -1,0 +1,70 @@
+I"è<p>When transferring large amounts of data between devices on a network the amount of bandwidth available can soon become a limiting factor.
+Normally, to increase bandwidth you need to upgrade the network hardware in the devices, however, the increments in bandwidth are large, e.g. 100 Mb/s to 1000 Mb/s, and can be costly.
+But, network cards can come with several Ethernet ports, allowing connections to multiple devices.</p>
+
+<p>Link aggregation allows you to combine these multiple Ethernet ports into a single logical channel, enabling the bandwidth of each port to be utilised.
+I recently used link aggregation to quadruple the available bandwidth to our Network Access Storage, allowing us to transfer significantly more data than previously possible.
+Additionally, it provides failover for when an Ethernet port stops working.</p>
+
+<h1 id="link-aggregation">Link Aggregation</h1>
+<p>The idea of link aggregation is to distribute the packets of data between the ports so that the traffic is balanced.
+Two stages are involved in setting this up: first, creating a link aggregation group; and, second, selecting a scheduling alogrithm.</p>
+
+<h2 id="link-aggregation-group">Link Aggregation Group</h2>
+<p>When a set of Ethernet ports are combined it is called a <strong>link aggregation group</strong>, with each port creating a separate link.</p>
+
+<blockquote>
+  <p>All ports in the group must be identical, i.e. have the same bandwidth and configuration.</p>
+</blockquote>
+
+<p>When sending data over the network, all the packets for a session must be sent over a single link.
+This ensures that the packets are recieved in order.</p>
+
+<h2 id="scheduling-algorithm">Scheduling Algorithm</h2>
+<p>Once the link aggregation group has been created, an appropriate scheduling alogorithm must be selected.
+The key here is to use an algorithm that successfully randomises the packets across the links, resulting in the traffic being evenly balanced.</p>
+
+<p>Selecting an appropriate algorithm depends on the situation in which link aggregation is being used.
+When lots of different devices are communicating between each other, an algorithm that uses MAC addresses may be useful.
+However, if the number of devices is small, a more appropriate algorithm may be based on IP addresses instead.</p>
+
+<h1 id="setup">Setup</h1>
+<p>Our NAS is a <a href="https://www.synology.com/en-uk/products/DS1819+">Synology DiskStation DS1819+</a> which features four 1 Gb/s Ethernet ports.
+This NAS makes it easy to set up link aggregation with the DiskStation Manager OS.</p>
+
+<p>First, connect to the NAS using a browser and log in.</p>
+
+<blockquote>
+  <p>Have Cat-5e/Cat-6 Ethernet cables ready to plug into the NAS.</p>
+</blockquote>
+
+<p>Second, navigate to the network interface screen in the control panel:
+<strong>Control Panel &gt; Network &gt; Network Interface</strong>.</p>
+
+<p>Next, bring the Ethernet ports together by creating a bond:
+<strong>Create &gt; Create Bond</strong>.</p>
+
+<p>Now, a screen will appear asking for the type of link aggregation mode to enable.
+Which mode to select depends on the switch that the NAS is connected to.</p>
+
+<p>The switch that we are using is a <a href="https://www.tp-link.com/us/business-networking/unmanaged-switch/tl-sg1016d/">TP-Link TL-SG1016D</a>, which has 16 ports at 1 Gb/s.
+Unfortunately, this switch does not support link aggregation protocols, however, this is not a problem as we can still select the <strong>Adaptive Load Balancing</strong> option.
+This allows for the incoming and outgoing traffic to be divided between the Ethernet ports, ultimately reducing the congestion found in the network.</p>
+
+<p>Once the link aggregation mode has been set, select the Ethernet ports that you want grouped. In my case, I selected all 4 available ports.</p>
+
+<p>Next, set up the network as required. If you have a DHCP server connected, then you can select DHCP.</p>
+
+<p>Finally, click apply.
+At this point, plug in the Ethernet cables into the NAS and then into the switch.</p>
+
+<blockquote>
+  <p>Make sure to plug the Ethernet cables into the ports of the NAS that were selected previously.</p>
+</blockquote>
+
+<p>Once you have plugged in the cables, check the network interface to make sure the interfaces have been detected and the network status is correct.
+As you can see below, I have grouped the 4 Ethernet ports to achieve a 4 Gb/s bandwidth.</p>
+
+<p><img src="/assets/images/synology-network-interface.jpeg" alt="Synology Network Interface" /></p>
+
+:ET

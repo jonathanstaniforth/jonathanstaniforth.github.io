@@ -1,0 +1,5 @@
+I"t<p>Certain problems have characteristics that allow it to be broken down into smaller sub-problems.
+This is attractive as the solution to the sub-problems are trivial in comparison to the original problem.
+This type of problem can be handled using <strong>recursive algorithms</strong>, which allow for more elegant solutions that would otherwise be complex.
+The general structure of recursive algorithms are as follows: break the problem into smaller sub-problems until it cannot be broken any further; then, solve each of the sub-problems and combine their solutions to form the overall solution for the original problem.</p>
+:ET
