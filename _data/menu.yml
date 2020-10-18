@@ -2,12 +2,6 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: pages
-    url: false
-    entries:
-      - title: about
-        url: about
-
   - title: posts
     post_list: true
     url: false
@@ -18,6 +12,12 @@ entries:
     entries:
       - title: limber framework
         url: https://github.com/limber-project/limberframework
+
+  - title: pages
+    url: false
+    entries:
+      - title: about
+        url: about
 
   - title: links
     url: false
