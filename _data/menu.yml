@@ -18,6 +18,8 @@ entries:
     entries:
       - title: about
         url: about
+      - title: resources
+        url: resources
 
   - title: links
     url: false
